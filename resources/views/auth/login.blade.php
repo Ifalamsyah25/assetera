@@ -133,7 +133,7 @@
                         value="{{ old('email') }}"
                         required
                         class="input mt-2"
-                        placeholder="admin@dapurmbg.test">
+                        placeholder="admin@assetera.com">
 
                     @error('email')
                         <p class="text-sm text-red-500 mt-1">{{ $message }}</p>

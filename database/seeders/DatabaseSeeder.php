@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,25 +17,40 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Administrator DapurMBG',
-            'username' => 'admin',
-            'email' => 'admin@dapurmbg.test',
-            'role' => 'admin',
-        ]);
+        User::updateOrCreate(
+            ['username' => 'admin'],
+            [
+                'name' => 'Administrator Assetera',
+                'email' => 'admin@assetera.com',
+                'role' => 'admin',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Pimpinan DapurMBG',
-            'username' => 'pimpinan',
-            'email' => 'pimpinan@dapurmbg.test',
-            'role' => 'pimpinan',
-        ]);
+        User::updateOrCreate(
+            ['username' => 'pimpinan'],
+            [
+                'name' => 'Pimpinan Assetera',
+                'email' => 'pimpinan@assetera.com',
+                'role' => 'pimpinan',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Staff Gudang',
-            'username' => 'staff',
-            'email' => 'staff@dapurmbg.test',
-            'role' => 'staff',
-        ]);
+        User::updateOrCreate(
+            ['username' => 'staff'],
+            [
+                'name' => 'Staff Gudang Assetera',
+                'email' => 'staff@assetera.com',
+                'role' => 'staff',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+            ]
+        );
     }
 }
