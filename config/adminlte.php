@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'DapurMBG',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => ' | DapurMBG',
 
     /*
     |--------------------------------------------------------------------------
@@ -63,9 +63,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<span class="brand-title-main">ASSETERA</span><span class="brand-title-sub">v1.01</span>',
+    'logo_img' => null,
+    'logo_img_class' => 'd-none',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Admin Logo',
@@ -137,8 +137,8 @@ return [
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -154,8 +154,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -190,17 +190,17 @@ return [
     |
     */
 
-    'classes_body' => '',
-    'classes_brand' => '',
-    'classes_brand_text' => '',
+    'classes_body' => 'layout-fixed assetera-body',
+    'classes_brand' => 'assetera-brand',
+    'classes_brand_text' => 'text-sm',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_sidebar' => 'sidebar-light elevation-0',
+    'classes_sidebar_nav' => 'nav-flat nav-child-indent nav-compact nav-pills',
+    'classes_topnav' => 'navbar-white navbar-light assetera-topbar',
     'classes_topnav_nav' => 'navbar-expand',
-    'classes_topnav_container' => 'container',
+    'classes_topnav_container' => 'container-fluid',
 
     /*
     |--------------------------------------------------------------------------
@@ -256,14 +256,14 @@ return [
     |
     */
 
-    'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'use_route_url' => true,
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+    'profile_url' => 'profile.edit',
     'disable_darkmode_routes' => false,
 
     /*
@@ -299,98 +299,76 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
         [
             'type' => 'navbar-search',
-            'text' => 'search',
+            'text' => 'Search activities, assetes or members...',
+            'topnav_right' => false,
+        ],
+        [
+            'text' => '',
+            'url' => '#',
+            'icon' => 'far fa-bell',
             'topnav_right' => true,
         ],
         [
-            'type' => 'fullscreen-widget',
+            'text' => 'My Task',
+            'url' => '#',
+            'icon' => 'far fa-check-circle',
             'topnav_right' => true,
         ],
-
-        // Sidebar items:
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Dashboard',
+            'route' => 'dashboard',
+            'icon' => 'fas fa-fw fa-th-large',
+            'can' => 'viewAny',
+            'model' => \App\Models\Asset::class,
         ],
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
+            'text' => 'Pengajuan Aset',
+            'route' => 'asset-requests.index',
+            'icon' => 'fas fa-fw fa-hand-holding-usd',
+            'can' => 'admin-pimpinan-only',
         ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
+            'text' => 'Riwayat Pengajuan',
+            'route' => 'asset-requests.history',
+            'icon' => 'fas fa-fw fa-history',
+            'can' => 'staff-only',
         ],
-        ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url' => 'admin/settings',
+            'text' => 'Pengadaan Aset',
+            'route' => 'assets.create',
+            'icon' => 'fas fa-fw fa-clipboard-list',
+            'can' => 'create',
+            'model' => \App\Models\Asset::class,
+        ],
+        [
+            'text' => 'Peminjaman Asset',
+            'route' => 'transactions.index',
+            'icon' => 'fas fa-fw fa-briefcase',
+            'can' => 'viewAny',
+            'model' => \App\Models\Transaction::class,
+        ],
+        [
+            'text' => 'Under Service',
+            'route' => 'maintenances.index',
+            'icon' => 'fas fa-fw fa-tools',
+            'can' => 'viewAny',
+            'model' => \App\Models\Maintenance::class,
+        ],
+        [
+            'text' => 'User',
+            'route' => 'users.index',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'viewAny',
+            'model' => \App\Models\User::class,
         ],
         [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
+            'text' => 'Logout',
+            'route' => 'logout',
+            'icon' => 'fas fa-fw fa-sign-out-alt',
+            'method' => 'post',
+            'classes' => 'assetera-logout-link',
         ],
     ],
 
@@ -475,12 +453,22 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                ],
+            ],
+        ],
+        'AsseteraTheme' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'css/dashboard-theme.css',
                 ],
             ],
         ],
