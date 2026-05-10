@@ -61,13 +61,12 @@
     <!-- LEFT SIDE -->
     <div class="w-1/2 flex flex-col justify-center px-36 relative">
 
-       
-        <!-- LOGO (NO BACKGROUND) -->
+        <!-- LOGO -->
         <div class="mb-10">
             <a href="{{ url('/') }}">
                 <img src="{{ asset('logo.png') }}" 
                     alt="Logo Assetera" 
-                    class="h-28 w-auto"> <!-- 🔥 diperbesar -->
+                    class="h-28 w-auto">
             </a>
         </div>
 
@@ -93,45 +92,12 @@
             </div>
         </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         <!-- FOOTER -->
         <div class="absolute bottom-8 text-sm text-gray-400">
             © 2024 Assetera - Dapur MBG.
-=======
-=======
->>>>>>> b266c48 (Faizan: Selesai merge dan slicing)
-=======
->>>>>>> b266c48e9103982c82682b8afaa9652d1cded3b8
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 7985ac3 (Faizan: Slicing transaksi selesai)
-=======
-=======
->>>>>>> b266c48e9103982c82682b8afaa9652d1cded3b8
-=======
-        <!-- FOOTER -->
-        <div class="absolute bottom-8 text-sm text-gray-400">
-            © 2024 Assetera - Dapur MBG.
->>>>>>> aa6c035913a37a5a47f2a66777aa34c59e14344a
-<<<<<<< HEAD
->>>>>>> b266c48 (Faizan: Selesai merge dan slicing)
-=======
->>>>>>> b266c48e9103982c82682b8afaa9652d1cded3b8
         </div>
     </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
     <!-- RIGHT SIDE -->
     <div class="w-1/2 flex items-center justify-center">
 
@@ -151,48 +117,6 @@
                 <div class="mb-4 text-sm text-green-600">
                     {{ session('status') }}
                 </div>
-=======
-=======
->>>>>>> b266c48 (Faizan: Selesai merge dan slicing)
-=======
->>>>>>> b266c48e9103982c82682b8afaa9652d1cded3b8
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 7985ac3 (Faizan: Slicing transaksi selesai)
-=======
-=======
->>>>>>> b266c48e9103982c82682b8afaa9652d1cded3b8
-=======
-
-    <!-- RIGHT SIDE -->
-    <div class="w-1/2 flex items-center justify-center">
-
-        <div class="card">
-
-            <!-- TITLE -->
-            <h2 class="text-xl font-semibold text-gray-800">
-                Access Control
-            </h2>
-
-            <p class="text-sm text-gray-500 mt-2 mb-6">
-                Authorized personnel only. Please verify your credentials.
-            </p>
-
-            <!-- SESSION -->
-            @if (session('status'))
-                <div class="mb-4 text-sm text-green-600">
-                    {{ session('status') }}
-                </div>
->>>>>>> aa6c035913a37a5a47f2a66777aa34c59e14344a
-<<<<<<< HEAD
->>>>>>> b266c48 (Faizan: Selesai merge dan slicing)
-=======
->>>>>>> b266c48e9103982c82682b8afaa9652d1cded3b8
             @endif
 
             <!-- FORM -->
