@@ -12,6 +12,7 @@ use App\Services\AssetStatusService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
@@ -108,6 +109,10 @@ class TransactionController extends Controller
             ])->withInput();
         }
 
+        if ($request->hasFile('photo')) {
+            $validated['photo_path'] = $request->file('photo')->store('transactions', 'public');
+        }
+
         $transaction = DB::transaction(function () use ($asset, $validated) {
             $transaction = Transaction::create($validated);
             $this->assetStatusService->sync($asset);
@@ -157,6 +162,13 @@ class TransactionController extends Controller
                     'asset_id' => 'Aset pengganti sedang dipinjam dan belum dikembalikan.',
                 ])->withInput();
             }
+        }
+
+        if ($request->hasFile('photo')) {
+            if ($transaction->photo_path) {
+                Storage::disk('public')->delete($transaction->photo_path);
+            }
+            $validated['photo_path'] = $request->file('photo')->store('transactions', 'public');
         }
 
         DB::transaction(function () use ($transaction, $validated, $previousAsset): void {

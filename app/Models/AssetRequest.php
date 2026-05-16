@@ -18,10 +18,10 @@ class AssetRequest extends Model
         'user_id',
         'item_name',
         'quantity',
-        'estimated_price',
+        'estimated_cost',
         'reason',
         'status',
-        'reject_reason',
+        'rejection_reason',
     ];
 
     public function user(): BelongsTo
