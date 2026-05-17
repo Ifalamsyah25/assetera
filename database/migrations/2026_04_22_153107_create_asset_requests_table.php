@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('item_name');
             $table->integer('quantity');
             $table->decimal('estimated_cost', 10, 2)->nullable();
-            $table->text('reason');
+            $table->text('reason')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('rejection_reason')->nullable();
             $table->timestamps();

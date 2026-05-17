@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="loan-form-page">
-        <form action="{{ route('transactions.store') }}" method="POST">
+        <form action="{{ route('transactions.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             @if ($errors->any())
@@ -112,9 +112,13 @@
                 <div class="extra-panel">
                     <div class="upload-card">
                         <label>Foto Asset (Serah Terima)</label>
-                        <div class="upload-placeholder">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <span>Upload Image</span>
+                        <div class="upload-placeholder" id="upload-area" onclick="document.getElementById('photo-input').click()" style="cursor:pointer;position:relative;overflow:hidden;">
+                            <img id="photo-preview" src="" alt="" style="display:none;max-height:120px;max-width:100%;border-radius:12px;">
+                            <div id="upload-text">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Upload Image</span>
+                            </div>
+                            <input type="file" id="photo-input" name="photo" accept="image/*" style="display:none;" onchange="previewPhoto(this)">
                         </div>
                     </div>
                     <div class="check-card">
@@ -170,4 +174,22 @@
             .upload-card { width: 100%; }
         }
     </style>
+@stop
+
+@section('js')
+    <script>
+        function previewPhoto(input) {
+            const preview = document.getElementById('photo-preview');
+            const text = document.getElementById('upload-text');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    text.style.display = 'none';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @stop
