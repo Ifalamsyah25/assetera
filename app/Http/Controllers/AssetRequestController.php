@@ -65,7 +65,11 @@ class AssetRequestController extends Controller
 
         AssetRequest::create($validated);
 
-        return redirect()->route('asset-requests.index')->with('success', 'Pengajuan aset berhasil dikirim.');
+        $route = Auth::user()->role === 'staff'
+            ? 'asset-requests.history'
+            : 'asset-requests.index';
+
+        return redirect()->route($route)->with('success', 'Pengajuan aset berhasil dikirim.');
     }
 
     public function approve(Request $request, AssetRequest $assetRequest)

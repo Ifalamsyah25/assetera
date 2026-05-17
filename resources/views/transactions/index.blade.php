@@ -10,6 +10,17 @@
 @section('content')
     <x-flash-message />
 
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <strong>Validation Error:</strong>
+            <ul class="mb-0">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     {{-- Hero --}}
     <div class="assetera-hero">
         <div class="assetera-hero-text">
