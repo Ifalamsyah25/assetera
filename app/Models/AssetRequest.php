@@ -18,6 +18,7 @@ class AssetRequest extends Model
         'user_id',
         'item_name',
         'quantity',
+        'category',
         'estimated_cost',
         'reason',
         'status',

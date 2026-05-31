@@ -2,9 +2,10 @@ body.assetera-body {
     background: #f3f6fb;
 }
 
-/* Global scale: increase font sizes approximately one step */
+/* Global scale: increase all UI elements to 110% */
 :root {
-    --global-font-scale: 1.0625; /* ~6.25% increase */
+    --global-font-scale: 1.1;
+    /* 10% increase */
 }
 
 html {
@@ -17,32 +18,34 @@ body {
 
 .assetera-brand {
     border: 0 !important;
-    height: 86px;
-    padding: 18px 18px 10px;
+    height: 103px;
+    padding: 22px 22px 12px;
     display: flex;
     align-items: flex-start;
 }
 
 .assetera-brand .brand-link {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 1.05;
-    padding: 0;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    line-height: 1.05 !important;
+    padding: 0 !important;
+    white-space: normal !important;
+    width: 100% !important;
 }
 
 .brand-title-main {
     color: #557cc0;
     font-weight: 800;
     letter-spacing: 0.02em;
-    font-size: 36px;
+    font-size: 43px;
 }
 
 .brand-title-sub {
     color: #a7b2c4;
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 700;
-    margin-top: 4px;
+    margin-top: 5px;
 }
 
 .main-sidebar.sidebar-light {
@@ -52,7 +55,7 @@ body {
 }
 
 .main-sidebar .sidebar {
-    padding: 8px 12px 18px;
+    padding: 10px 14px 22px;
 }
 
 .main-sidebar .nav-sidebar .nav-item {
@@ -63,11 +66,11 @@ body {
     color: #667795;
     border-radius: 999px;
     font-weight: 600;
-    padding: 10px 14px;
+    padding: 12px 17px;
 }
 
 .main-sidebar .nav-sidebar .nav-link p {
-    font-size: 16px;
+    font-size: 19px;
 }
 
 .main-sidebar .nav-sidebar .nav-link.active {
@@ -147,12 +150,12 @@ body {
     background: #eef2f9;
 }
 
-.assetera-topbar .navbar-nav.ml-auto .user-menu > .nav-link {
+.assetera-topbar .navbar-nav.ml-auto .user-menu>.nav-link {
     background: transparent;
     padding: 0 8px;
 }
 
-.assetera-topbar .navbar-nav.ml-auto .user-menu > .nav-link span {
+.assetera-topbar .navbar-nav.ml-auto .user-menu>.nav-link span {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -162,7 +165,7 @@ body {
     font-size: 15px;
 }
 
-.assetera-topbar .navbar-nav.ml-auto .user-menu > .nav-link span::after {
+.assetera-topbar .navbar-nav.ml-auto .user-menu>.nav-link span::after {
     content: "Admin";
     color: #8d98ad;
     font-size: 13px;
@@ -173,7 +176,7 @@ body {
     background: #f3f6fb !important;
 }
 
-.content-wrapper > .content {
+.content-wrapper>.content {
     padding-top: 8px;
 }
 
@@ -194,12 +197,12 @@ body {
 
 .assetera-hero {
     background: linear-gradient(135deg, #e8edf6 0%, #dce4f2 60%, #f3f6fb 100%);
-    border-radius: 18px;
-    padding: 32px 36px;
+    border-radius: 22px;
+    padding: 38px 43px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 29px;
     position: relative;
     overflow: hidden;
 }
@@ -223,17 +226,17 @@ body {
 }
 
 .assetera-hero-greet {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     color: #3b506b;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
 .assetera-hero-sub {
     color: #6b7fa5;
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 600;
-    max-width: 420px;
+    max-width: 504px;
     line-height: 1.5;
 }
 
@@ -245,11 +248,11 @@ body {
 /* Stat Cards */
 .assetera-stat-card {
     background: #fff;
-    border-radius: 16px;
-    padding: 22px 20px;
+    border-radius: 19px;
+    padding: 26px 24px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 19px;
     box-shadow: 0 2px 12px rgba(80, 114, 185, 0.06);
     transition: box-shadow 0.2s, transform 0.2s;
 }
@@ -260,7 +263,7 @@ body {
 }
 
 .assetera-stat-card h3 {
-    font-size: 30px;
+    font-size: 36px;
     font-weight: 800;
     color: #2f3b52;
     margin: 0;
@@ -268,19 +271,19 @@ body {
 
 .assetera-stat-card p {
     color: #8a96ad;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     margin: 0;
 }
 
 .assetera-stat-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 53px;
+    height: 53px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 24px;
     flex-shrink: 0;
 }
 
@@ -315,13 +318,13 @@ body {
 .assetera-card .card-header {
     background: #fff;
     border-bottom: 1px solid #eef2f9;
-    padding: 18px 24px;
+    padding: 22px 29px;
 }
 
 .assetera-card .card-title {
     font-weight: 700;
     color: #2f3b52;
-    font-size: 19px;
+    font-size: 23px;
 }
 
 .assetera-toolbar-filters {
@@ -360,19 +363,19 @@ body {
     background: #f8fafd;
     color: #000000 !important;
     font-weight: 700;
-    font-size: 15px !important;
+    font-size: 18px !important;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    padding: 12px 20px;
+    padding: 14px 24px;
     border-bottom: 1px solid #eef2f9;
     border-top: 0;
 }
 
 
 .assetera-table-wrap .table tbody td {
-    padding: 14px 20px;
+    padding: 17px 24px;
     vertical-align: middle;
-    font-size: 16px;
+    font-size: 19px;
     color: #3b506b;
     border-bottom: 1px solid #f3f6fb;
 }
@@ -380,7 +383,8 @@ body {
 .assetera-table-wrap .table tbody tr:hover {
     background: #f8fafd;
 }
-.assetera-table-wrap table-responsive{
+
+.assetera-table-wrap table-responsive {
     color: #000 !important;
     font-size: 17px;
 }
@@ -389,9 +393,9 @@ body {
 /* Pills */
 .assetera-pill {
     display: inline-block;
-    padding: 4px 14px;
+    padding: 5px 17px;
     border-radius: 999px;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 700;
     line-height: 1.6;
 }
@@ -488,11 +492,11 @@ body {
 }
 
 .small-box .inner {
-    padding: 20px;
+    padding: 24px;
 }
 
 .small-box .inner h3 {
-    font-size: 34px;
+    font-size: 41px;
     font-weight: 800;
 }
 
@@ -521,7 +525,7 @@ body {
     overflow: hidden;
 }
 
-.card.card-outline.card-primary > .card-header {
+.card.card-outline.card-primary>.card-header {
     background: #fff;
     border-bottom: 1px solid #eef2f9;
 }
@@ -570,7 +574,7 @@ body {
     background: #f8fafd;
     color: #000000 !important;
     font-weight: 700;
-    font-size: 15px !important;
+    font-size: 18px !important;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     border-bottom: 1px solid #eef2f9;
@@ -578,7 +582,7 @@ body {
 
 .card .table tbody td {
     vertical-align: middle;
-    font-size: 16px;
+    font-size: 19px;
     color: #3b506b;
 }
 
@@ -598,16 +602,16 @@ body {
     overflow: hidden;
 }
 
-.card > .card-header {
+.card>.card-header {
     background: #fff;
     border-bottom: 1px solid #eef2f9;
-    padding: 16px 20px;
+    padding: 19px 24px;
 }
 
-.card > .card-header .card-title {
+.card>.card-header .card-title {
     font-weight: 700;
     color: #2f3b52;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 /* Info boxes – Assetera style */
@@ -628,9 +632,9 @@ body {
 }
 
 .info-box-icon {
-    border-radius: 12px !important;
-    width: 56px;
-    height: 56px;
+    border-radius: 14px !important;
+    width: 67px;
+    height: 67px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -655,11 +659,11 @@ body {
 .info-box .info-box-text {
     font-weight: 700;
     color: #3b506b;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .info-box .info-box-number {
-    font-size: 24px;
+    font-size: 29px;
     font-weight: 800;
     color: #2f3b52;
 }
@@ -733,12 +737,12 @@ body {
 .content-header h1 {
     font-weight: 800;
     color: #2f3b52;
-    font-size: 26px;
+    font-size: 31px;
 }
 
 .content-header small.text-muted {
     color: #8a96ad !important;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .breadcrumb {
@@ -762,10 +766,10 @@ body {
 
 /* Badge refinements */
 .badge {
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: 700;
-    padding: 5px 12px;
-    font-size: 13px;
+    padding: 6px 14px;
+    font-size: 16px;
 }
 
 .badge-success {

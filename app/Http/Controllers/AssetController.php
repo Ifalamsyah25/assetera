@@ -116,6 +116,7 @@ class AssetController extends Controller
             'submitLabel' => 'Update Asset',
             'pageTitle' => 'Edit Asset',
             'pageSubtitle' => 'Perbarui data inventaris',
+            'categories' => $this->getCategoriesForForm(), // <-- Tambahan: Mengirim data ke form create
         ]);
     }
 
@@ -241,5 +242,16 @@ class AssetController extends Controller
             'borrowed' => $assets->where('status_asset', Asset::STATUS_BORROWED)->count(),
             'damaged' => $assets->where('status_asset', Asset::STATUS_DAMAGED)->count(),
         ];
+    }
+
+    private function getCategoriesForForm()
+    {
+        return Asset::query()
+            ->select('category_asset')
+            ->distinct()
+            ->whereNotNull('category_asset')
+            ->where('category_asset', '!=', '')
+            ->orderBy('category_asset')
+            ->pluck('category_asset');
     }
 }

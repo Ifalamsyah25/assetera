@@ -56,6 +56,7 @@ class AssetRequestController extends Controller
         $validated = $request->validate([
             'item_name' => 'required|string|max:255',
             'quantity' => 'required|integer|min:1',
+            'category' => 'required|string|max:255', // <-- Tambahkan validasi ini
             'estimated_cost' => 'nullable|numeric|min:0',
             'reason' => 'nullable|string',
         ]);
@@ -88,7 +89,7 @@ class AssetRequestController extends Controller
                 Asset::create([
                     'code_asset' => 'REQ-' . strtoupper(uniqid()),
                     'name_asset' => $assetRequest->item_name,
-                    'category_asset' => 'Uncategorized', // Default required field
+                    'category_asset' => $assetRequest->category,
                     'status_asset' => Asset::STATUS_AVAILABLE,
                     'kondisi_asset' => 'Baik',
                     'purchase_date' => now(), // Default required field

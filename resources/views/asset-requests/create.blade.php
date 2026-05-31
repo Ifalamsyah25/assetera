@@ -71,25 +71,29 @@
                             <span class="req-step-num">02</span>
                             Detail Permintaan Aset
                         </h3>
+                        
                         <div class="form-group">
                             <label>Nama Barang <span class="text-danger">*</span></label>
                             <input type="text" name="item_name" class="form-control req-input @error('item_name') is-invalid @enderror" value="{{ old('item_name') }}" placeholder="Contoh: Freezer" required>
                             @error('item_name') <span class="text-danger small">{{ $message }}</span> @enderror
                         </div>
+                        
                         <div class="row">
+                            {{-- Kolom Kategori (Sudah Diperbaiki) --}}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Kategori</label>
-                                    <select name="category" class="form-control req-input">
-                                        <option value="">Pilih Kategori</option>
-                                        <option value="Elektronik" @selected(old('category') === 'Elektronik')>Elektronik</option>
-                                        <option value="Peralatan" @selected(old('category') === 'Peralatan')>Peralatan</option>
-                                        <option value="Furnitur" @selected(old('category') === 'Furnitur')>Furnitur</option>
-                                        <option value="Kendaraan" @selected(old('category') === 'Kendaraan')>Kendaraan</option>
-                                        <option value="Perabotan" @selected(old('category') === 'Perabotan')>Perabotan</option>
+                                    <label for="category">Kategori Aset <span class="text-danger">*</span></label>
+                                    <select name="category" id="category" class="form-control req-input @error('category') is-invalid @enderror" required>
+                                        <option value="">-- Pilih Kategori --</option>
+                                        <option value="Elektronik" {{ old('category') == 'Elektronik' ? 'selected' : '' }}>Elektronik</option>
+                                        <option value="Furnitur" {{ old('category') == 'Furnitur' ? 'selected' : '' }}>Furnitur</option>
+                                        <option value="Kendaraan" {{ old('category') == 'Kendaraan' ? 'selected' : '' }}>Kendaraan</option>
                                     </select>
+                                    @error('category') <span class="text-danger small">{{ $message }}</span> @enderror
                                 </div>
                             </div>
+                            
+                            {{-- Kolom Jumlah --}}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Jumlah <span class="text-danger">*</span></label>
@@ -99,7 +103,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
                 {{-- Footer --}}
                 <div class="req-form-footer mt-3">

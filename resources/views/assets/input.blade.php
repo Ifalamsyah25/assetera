@@ -51,10 +51,30 @@
                         </div>
                     </div>
                     <div class="form-row">
+                        
                         <div class="form-group col-md-6">
                             <label for="category_asset">Kategori <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control input-pill" id="category_asset" name="category_asset" value="{{ old('category_asset', $asset->category_asset) }}" required>
+                            <select id="category_asset" name="category_asset" class="form-control input-pill" required>
+                                <option value="" disabled {{ old('category_asset', $asset->category_asset) ? '' : 'selected' }}>-- Pilih Kategori --</option>
+                                
+                                @php
+                                    // Menyediakan daftar opsi kategori langsung di aplikasi
+                                    $listKategori = ['Alat Dapur', 'Elektronik', 'Furnitur', 'Kendaraan', 'Peralatan Kantor'];
+                                @endphp
+
+                                @foreach($listKategori as $kategori)
+                                    <option value="{{ $kategori }}" @selected(old('category_asset', $asset->category_asset) == $kategori)>
+                                        {{ $kategori }}
+                                    </option>
+                                @endforeach
+
+                                {{-- Pengaman khusus: Jika data aset lama di database masih bernilai 'Uncategorized' --}}
+                                @if(old('category_asset', $asset->category_asset) == 'Uncategorized')
+                                    <option value="Uncategorized" selected>⚠️ Uncategorized (Harap Ubah Kategori)</option>
+                                @endif
+                            </select>
                         </div>
+
                         <div class="form-group col-md-6">
                             <label for="merk_asset">Merk</label>
                             <input type="text" class="form-control input-pill" id="merk_asset" name="merk_asset" value="{{ old('merk_asset', $asset->merk_asset) }}" placeholder="Contoh: Sharp, Philips, etc.">
