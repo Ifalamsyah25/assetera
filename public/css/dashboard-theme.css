@@ -1,6 +1,18 @@
 body.assetera-body {
     background: #f3f6fb;
-    font-size: 20px !important;
+}
+
+/* Global scale: increase font sizes approximately one step */
+:root {
+    --global-font-scale: 1.0625; /* ~6.25% increase */
+}
+
+html {
+    font-size: calc(100% * var(--global-font-scale)) !important;
+}
+
+body {
+    font-size: calc(1rem * var(--global-font-scale)) !important;
 }
 
 .assetera-brand {
@@ -23,12 +35,12 @@ body.assetera-body {
     color: #557cc0;
     font-weight: 800;
     letter-spacing: 0.02em;
-    font-size: 38px;
+    font-size: 36px;
 }
 
 .brand-title-sub {
     color: #a7b2c4;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     margin-top: 4px;
 }
@@ -104,8 +116,7 @@ body.assetera-body {
     background: #e8edf4;
     border: 0;
     border-radius: 999px 0 0 999px !important;
-    height: 44px;
-    font-size: 16px;
+    height: 40px;
     color: #5f6f8b;
     padding-left: 16px;
 }
@@ -115,7 +126,6 @@ body.assetera-body {
     border: 0;
     border-radius: 0 999px 999px 0;
     color: #7b8ca8;
-    font-size: 16px;
 }
 
 .assetera-topbar .navbar-nav.ml-auto {
@@ -128,11 +138,10 @@ body.assetera-body {
     font-weight: 600;
     border-radius: 999px;
     padding: 8px 12px;
-    font-size: 15px;
 }
 
 .assetera-topbar .navbar-nav.ml-auto .nav-item:first-child .nav-link {
-    width: 40px;
+    width: 36px;
     text-align: center;
     padding: 8px;
     background: #eef2f9;
@@ -156,7 +165,7 @@ body.assetera-body {
 .assetera-topbar .navbar-nav.ml-auto .user-menu > .nav-link span::after {
     content: "Admin";
     color: #8d98ad;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
 }
 
@@ -205,7 +214,7 @@ body.assetera-body {
     position: absolute;
     top: -10px;
     left: -8px;
-    font-size: 86px;
+    font-size: 74px;
     font-weight: 900;
     color: rgba(86, 124, 192, 0.07);
     letter-spacing: -2px;
@@ -214,7 +223,7 @@ body.assetera-body {
 }
 
 .assetera-hero-greet {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     color: #3b506b;
     margin-bottom: 4px;
@@ -251,7 +260,7 @@ body.assetera-body {
 }
 
 .assetera-stat-card h3 {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 800;
     color: #2f3b52;
     margin: 0;
@@ -265,8 +274,8 @@ body.assetera-body {
 }
 
 .assetera-stat-icon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -327,8 +336,8 @@ body.assetera-body {
 .assetera-toolbar-filters .form-control {
     border-radius: 10px;
     border: 1px solid #dde3ef;
-    height: 42px;
-    font-size: 15px;
+    height: 38px;
+    font-size: 16px;
 }
 
 .assetera-toolbar-filters .btn-filter {
@@ -336,7 +345,6 @@ body.assetera-body {
     color: #667795;
     border-radius: 10px;
     font-weight: 600;
-    font-size: 14px;
 }
 
 .assetera-table-wrap {
@@ -347,11 +355,12 @@ body.assetera-body {
     margin-bottom: 0;
 }
 
+
 .assetera-table-wrap .table thead th {
     background: #f8fafd;
-    color: #7b8ca8;
+    color: #000000 !important;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 15px !important;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     padding: 12px 20px;
@@ -359,10 +368,11 @@ body.assetera-body {
     border-top: 0;
 }
 
+
 .assetera-table-wrap .table tbody td {
     padding: 14px 20px;
     vertical-align: middle;
-    font-size: 15px;
+    font-size: 16px;
     color: #3b506b;
     border-bottom: 1px solid #f3f6fb;
 }
@@ -370,13 +380,18 @@ body.assetera-body {
 .assetera-table-wrap .table tbody tr:hover {
     background: #f8fafd;
 }
+.assetera-table-wrap table-responsive{
+    color: #000 !important;
+    font-size: 17px;
+}
+
 
 /* Pills */
 .assetera-pill {
     display: inline-block;
     padding: 4px 14px;
     border-radius: 999px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1.6;
 }
@@ -424,7 +439,7 @@ body.assetera-body {
     padding: 6px 12px;
     color: #667795;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .assetera-pagination-bar .page-item.active .page-link {
@@ -477,7 +492,7 @@ body.assetera-body {
 }
 
 .small-box .inner h3 {
-    font-size: 36px;
+    font-size: 34px;
     font-weight: 800;
 }
 
@@ -487,7 +502,7 @@ body.assetera-body {
 }
 
 .small-box .icon i {
-    font-size: 68px;
+    font-size: 62px;
     opacity: 0.15;
 }
 
@@ -514,7 +529,6 @@ body.assetera-body {
 .card.card-outline.card-primary .card-title {
     font-weight: 700;
     color: #2f3b52;
-    font-size: 18px;
 }
 
 /* Report stat-card styling */
@@ -532,12 +546,10 @@ body.assetera-body {
 .stat-card .h3 {
     font-weight: 800;
     color: #2f3b52;
-    font-size: 32px;
 }
 
 .stat-card .text-muted {
     color: #8a96ad !important;
-    font-size: 15px;
 }
 
 .stat-card .badge-warning {
@@ -556,9 +568,9 @@ body.assetera-body {
 /* Report tables */
 .card .table thead th {
     background: #f8fafd;
-    color: #7b8ca8;
+    color: #000000 !important;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 15px !important;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     border-bottom: 1px solid #eef2f9;
@@ -566,7 +578,7 @@ body.assetera-body {
 
 .card .table tbody td {
     vertical-align: middle;
-    font-size: 15px;
+    font-size: 16px;
     color: #3b506b;
 }
 
@@ -617,13 +629,12 @@ body.assetera-body {
 
 .info-box-icon {
     border-radius: 12px !important;
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto 0;
-    font-size: 22px;
 }
 
 .info-box-icon.bg-info {
@@ -648,7 +659,7 @@ body.assetera-body {
 }
 
 .info-box .info-box-number {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 800;
     color: #2f3b52;
 }
@@ -659,7 +670,6 @@ body.assetera-body {
     color: #5e87cc;
     border-radius: 10px;
     font-weight: 600;
-    font-size: 14px;
 }
 
 .btn-outline-primary:hover {
@@ -673,7 +683,6 @@ body.assetera-body {
     color: #ca8a04;
     border-radius: 10px;
     font-weight: 600;
-    font-size: 14px;
 }
 
 .btn-outline-warning:hover {
@@ -687,7 +696,6 @@ body.assetera-body {
     color: #ef4444;
     border-radius: 10px;
     font-weight: 600;
-    font-size: 14px;
 }
 
 .btn-outline-danger:hover {
@@ -703,7 +711,6 @@ body.assetera-body {
     border-radius: 10px;
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
-    font-size: 14px;
 }
 
 .btn-sm.btn-success {
@@ -712,7 +719,6 @@ body.assetera-body {
     border-radius: 10px;
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(34, 197, 94, 0.2);
-    font-size: 14px;
 }
 
 .btn-sm.btn-primary {
@@ -721,14 +727,13 @@ body.assetera-body {
     border-radius: 10px;
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(86, 124, 192, 0.2);
-    font-size: 14px;
 }
 
 /* Content header breadcrumb */
 .content-header h1 {
     font-weight: 800;
     color: #2f3b52;
-    font-size: 28px;
+    font-size: 26px;
 }
 
 .content-header small.text-muted {
@@ -744,12 +749,10 @@ body.assetera-body {
 .breadcrumb-item a {
     color: #5e87cc;
     font-weight: 600;
-    font-size: 15px;
 }
 
 .breadcrumb-item.active {
     color: #8a96ad;
-    font-size: 15px;
 }
 
 /* Font weight utility */
@@ -789,11 +792,10 @@ body.assetera-body {
 .form-inline .form-control-sm {
     border-radius: 10px;
     border: 1px solid #dde3ef;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .form-inline .btn-primary {
     border-radius: 10px;
     font-weight: 600;
-    font-size: 14px;
 }

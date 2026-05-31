@@ -132,13 +132,13 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Kode Aset</th>
-                    <th>Nama</th>
-                    <th>Kategori</th>
-                    <th>Location</th>
-                    <th>Condition</th>
-                    <th>Status</th>
-                    <th class="text-right">Action</th>
+                    <th style="color: #000; font-size: 15px;">Kode Aset</th>
+                    <th style="color: #000; font-size: 15px;">Nama</th>
+                    <th style="color: #000; font-size: 15px;">Kategori</th>
+                    <th style="color: #000; font-size: 15px;">Location</th>
+                    <th style="color: #000; font-size: 15px;">Condition</th>
+                    <th style="color: #000; font-size: 15px;">Status</th>
+                    <th class="text-right" style="color: #000; font-size: 15px;">Action</th>
                 </tr>
                 </thead>
                 <tbody>

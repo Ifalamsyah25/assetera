@@ -341,13 +341,13 @@ return [
             'icon' => 'fas fa-fw fa-clipboard-list',
             'can' => 'admin-pimpinan-only',
         ],
-        [
-            'text' => 'Peminjaman Asset',
-            'route' => 'transactions.index',
-            'icon' => 'fas fa-fw fa-briefcase',
-            'can' => 'viewAny',
-            'model' => \App\Models\Transaction::class,
-        ],
+        //[
+         //   'text' => 'Peminjaman Asset',
+        //    'route' => 'transactions.index',
+        //    'icon' => 'fas fa-fw fa-briefcase',
+         //   'can' => 'viewAny',
+          //  'model' => \App\Models\Transaction::class,
+       // ],
         // [
         //     'text' => 'Under Service',
         //     'route' => 'maintenances.index',
