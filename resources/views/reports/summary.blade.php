@@ -133,7 +133,7 @@
                             <div class="h3 mb-1">Rp {{ number_format($summary['maintenances']['total_cost'], 0, ',', '.') }}</div>
                             <div class="small text-muted">{{ $summary['maintenances']['completed'] }} maintenance telah selesai</div>
                         </div>
-                        <span class="badge badge-danger badge-pill px-3 py-2 text-white">Perawatan</span>
+                        <span class="badge badge-danger badge-pill px-3 py-2">Perawatan</span>
                     </div>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                             <div class="h3 mb-1">{{ $summary['users']['total'] }} akun</div>
                             <div class="small text-muted">Admin {{ $summary['users']['admin'] }}, Pimpinan {{ $summary['users']['pimpinan'] }}, Staff {{ $summary['users']['staff'] }}</div>
                         </div>
-                        <span class="badge badge-success badge-pill px-3 py-2 text-white">Akun</span>
+                        <span class="badge badge-success badge-pill px-3 py-2">Akun</span>
                     </div>
                 </div>
             </div>
