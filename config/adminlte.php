@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<span class="brand-title-main">ASSETERA</span><span class="brand-title-sub">v1.01</span>',
+    'logo' => '<span class="brand-title-main">ASSETERA</span><span class="brand-title-sub"></span>',
     'logo_img' => null,
     'logo_img_class' => 'd-none',
     'logo_img_xl' => null,
@@ -348,21 +348,21 @@ return [
          //   'can' => 'viewAny',
           //  'model' => \App\Models\Transaction::class,
        // ],
-        // [
-        //     'text' => 'Under Service',
-        //     'route' => 'maintenances.index',
-        //     'icon' => 'fas fa-fw fa-tools',
-        //     'can' => 'viewAny',
-        //     'model' => \App\Models\Maintenance::class,
-        // ],
+        [
+            'text' => 'Under Service',
+            'route' => 'maintenances.index',
+            'icon' => 'fas fa-fw fa-tools',
+            'can' => 'viewAny',
+            'model' => \App\Models\Maintenance::class,
+        ],
         
-        // [
-        //     'text' => 'User',
-        //     'route' => 'users.index',
-        //     'icon' => 'fas fa-fw fa-user',
-        //     'can' => 'viewAny',
-        //     'model' => \App\Models\User::class,
-        // ],
+        [
+            'text' => 'User',
+            'route' => 'users.index',
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'viewAny',
+            'model' => \App\Models\User::class,
+        ],
         [
             'text' => 'Laporan',
             'route' => 'reports.summary',
