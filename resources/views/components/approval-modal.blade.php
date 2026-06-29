@@ -1,10 +1,12 @@
 @props(['req'])
 
-<!-- Modal Approve -->
+{{-- Done by: Rizqi Awalliyah - Sprint 2 Approval Integration --}}
+
 <div class="modal fade" id="approveModal-{{ $req->id }}" tabindex="-1">
     <div class="modal-dialog">
         <form action="{{ route('asset-requests.approve', $req->id) }}" method="POST">
-            @csrf @method('PATCH')
+            @csrf 
+            @method('PATCH')
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Konfirmasi Persetujuan</h5>
@@ -23,11 +25,11 @@
     </div>
 </div>
 
-<!-- Modal Reject -->
 <div class="modal fade" id="rejectModal-{{ $req->id }}" tabindex="-1">
     <div class="modal-dialog">
         <form action="{{ route('asset-requests.reject', $req->id) }}" method="POST">
-            @csrf @method('PATCH')
+            @csrf 
+            @method('PATCH')
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Tolak Pengajuan</h5>
@@ -47,3 +49,5 @@
         </form>
     </div>
 </div>
+
+{{-- End of Rizqi Sprint 2 --}}

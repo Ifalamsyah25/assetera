@@ -1,173 +1,234 @@
 @extends('adminlte::page')
 
-@section('title', 'Form Peminjaman Asset')
+@section('title', 'List Peminjaman Aset')
+
+@section('plugins.Sweetalert2', true)
 
 @section('content_header')
-    <div class="loan-form-header">
-        <h1>Form Peminjaman Asset</h1>
-        <p>Isi data peminjaman untuk mendistribusikan asset kepada pengguna</p>
-    </div>
-@stop
+@endsection
 
 @section('content')
-    <div class="loan-form-page">
-        <form action="{{ route('transactions.store') }}" method="POST">
-            @csrf
+    <x-flash-message />
 
-            @if ($errors->any())
-                <div class="alert alert-danger mb-3">
-                    <ul class="mb-0 pl-3">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <strong>Validation Error:</strong>
+            <ul class="mb-0">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    {{-- Hero --}}
+    <div class="assetera-hero">
+        <div class="assetera-hero-text">
+            <div class="d-flex align-items-center mb-2">
+                <div class="assetera-stat-icon blue mr-3" style="width:52px;height:52px;font-size:22px;">
+                    <i class="fas fa-briefcase"></i>
                 </div>
-            @endif
-
-            <div class="loan-form-card">
-                <div class="row">
-                    <div class="col-md-6">
-                        <section class="group-section">
-                            <h3><i class="fas fa-user mr-2"></i>Data Peminjam</h3>
-                            <div class="form-group">
-                                <label for="user_id">Nama Peminjam <span class="text-danger">*</span></label>
-                                <select id="user_id" name="user_id" class="form-control input-pill" required>
-                                    <option value="">Pilih user</option>
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}" @selected(old('user_id') == $user->id)>{{ $user->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="employee_id">ID Karyawan</label>
-                                <input type="text" id="employee_id" name="employee_id" class="form-control input-pill" value="{{ old('employee_id') }}" placeholder="Contoh: MBG0112026001">
-                            </div>
-                            <div class="form-group mb-0">
-                                <label for="division">Divisi</label>
-                                <input type="text" id="division" name="division" class="form-control input-pill" value="{{ old('division') }}">
-                            </div>
-                        </section>
-                    </div>
-
-                    <div class="col-md-6">
-                        <section class="group-section">
-                            <h3><i class="fas fa-laptop-house mr-2"></i>Data Asset</h3>
-                            <div class="form-group">
-                                <label for="asset_id">Pilih Asset <span class="text-danger">*</span></label>
-                                <select id="asset_id" name="asset_id" class="form-control input-pill" required>
-                                    <option value="">Contoh: Blender</option>
-                                    @foreach ($assets as $asset)
-                                        <option value="{{ $asset->id }}" @selected(old('asset_id') == $asset->id)>
-                                            {{ $asset->name_asset }} ({{ $asset->code_asset }})
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="asset_code_preview">Kode Asset</label>
-                                    <input type="text" id="asset_code_preview" name="asset_code_snapshot" class="form-control input-pill" value="{{ old('asset_code_snapshot') }}" placeholder="AST-PD-001">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="category_preview">Kategori</label>
-                                    <input type="text" id="category_preview" name="asset_category_snapshot" class="form-control input-pill" value="{{ old('asset_category_snapshot') }}" placeholder="Peralatan Dapur">
-                                </div>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label for="location_preview">Lokasi Asset</label>
-                                <input type="text" id="location_preview" name="asset_location_snapshot" class="form-control input-pill" value="{{ old('asset_location_snapshot') }}" placeholder="Dapur Jagakarsa">
-                            </div>
-                        </section>
-                    </div>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <section class="group-section">
-                            <h3><i class="far fa-calendar-alt mr-2"></i>Detail Peminjaman</h3>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="borrowed_at">Tanggal Pinjam <span class="text-danger">*</span></label>
-                                    <input type="date" id="borrowed_at" name="borrowed_at" class="form-control input-pill" value="{{ old('borrowed_at') }}" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="returned_at">Tanggal Kembali</label>
-                                    <input type="date" id="returned_at" name="returned_at" class="form-control input-pill" value="{{ old('returned_at') }}">
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-
-                    <div class="col-md-6">
-                        <section class="group-section">
-                            <h3><i class="far fa-file-alt mr-2"></i>Kondisi & Catatan</h3>
-                            <div class="form-group mb-0">
-                                <label for="condition_note">Kondisi Awal Asset</label>
-                                <input type="text" id="condition_note" name="condition_note" class="form-control input-pill" value="{{ old('condition_note') }}" placeholder="Contoh: Baik">
-                            </div>
-                        </section>
-                    </div>
-                </div>
-
-                <div class="extra-panel">
-                    <div class="upload-card">
-                        <label>Foto Asset (Serah Terima)</label>
-                        <div class="upload-placeholder">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <span>Upload Image</span>
-                        </div>
-                    </div>
-                    <div class="check-card">
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="inspection_confirm" name="inspection_confirmed" value="1" @checked(old('inspection_confirmed'))>
-                            <label for="inspection_confirm" class="custom-control-label">
-                                <strong>Konfirmasi Pemeriksaan</strong>
-                                <small>Saya menyatakan bahwa asset sudah diperiksa kondisi fisiknya dan berfungsi normal sebelum dipinjamkan.</small>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <input type="hidden" name="cost" value="{{ old('cost', 0) }}">
-
-                <div class="form-footer">
-                    <a href="{{ route('transactions.index') }}" class="btn btn-light btn-cancel">Batal</a>
-                    <button type="submit" class="btn btn-save">
-                        <i class="fas fa-lock mr-1"></i> Simpan
-                    </button>
+                <div>
+                    <h1 class="mb-0" style="font-size:28px;font-weight:800;color:#2f3b52;">Peminjaman Asset</h1>
+                    <p class="mb-0" style="color:#6b7fa5;font-size:14px;">Kelola dan pantau aset yang sedang dipinjam oleh pengguna</p>
                 </div>
             </div>
+        </div>
+        @can('create', \App\Models\Transaction::class)
+            <a href="{{ route('transactions.create') }}" class="btn btn-save" style="border-radius:999px;min-width:180px;background:#3d5f98;color:#fff;font-weight:700;font-size:15px;padding:12px 24px;">
+                <i class="fas fa-plus-circle mr-2"></i> Tambah Peminjam
+            </a>
+        @endcan
+    </div>
+
+    {{-- Summary Cards --}}
+    <div class="row assetera-stat-row">
+        <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="assetera-stat-card">
+                <div class="assetera-stat-icon blue"><i class="fas fa-clipboard-list"></i></div>
+                <div>
+                    <h3>{{ $summary['total'] }}</h3>
+                    <p>Total Dipinjam</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="assetera-stat-card">
+                <div class="assetera-stat-icon amber"><i class="fas fa-desktop"></i></div>
+                <div>
+                    <h3>{{ $summary['active'] }}</h3>
+                    <p>Sedang Dipakai</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="assetera-stat-card">
+                <div class="assetera-stat-icon green"><i class="fas fa-check-circle"></i></div>
+                <div>
+                    <h3>{{ $summary['returned'] }}</h3>
+                    <p>Sudah Dikembalikan</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="assetera-stat-card">
+                <div class="assetera-stat-icon red"><i class="fas fa-exclamation-circle"></i></div>
+                <div>
+                    <h3>{{ $summary['late'] }}</h3>
+                    <p>Terlambat</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Table --}}
+    <div class="card assetera-card border-0">
+        <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
+            <h3 class="card-title mb-0">Daftar Peminjaman Asset</h3>
+        </div>
+
+        <form method="GET" action="{{ route('transactions.index') }}" class="assetera-toolbar-filters">
+            <input type="text" name="search" class="form-control flex-grow-1" style="min-width:180px;max-width:320px;"
+                   value="{{ $filters['search'] ?? '' }}" placeholder="Cari Kode atau Nama Aset...">
+            <select name="status" class="form-control" style="max-width:160px;">
+                <option value="">Filter</option>
+                <option value="active" @selected(($filters['status'] ?? '') === 'active')>Sedang Dipinjam</option>
+                <option value="returned" @selected(($filters['status'] ?? '') === 'returned')>Dikembalikan</option>
+                <option value="late" @selected(($filters['status'] ?? '') === 'late')>Terlambat</option>
+            </select>
+            <button type="submit" class="btn btn-sm text-white font-weight-bold rounded-pill px-3" style="background:#7695c5;"><i class="fas fa-search mr-1"></i> Cari</button>
+            @if(($filters['search'] ?? '') !== '' || ($filters['status'] ?? '') !== '')
+                <a href="{{ route('transactions.index') }}" class="btn btn-sm btn-default rounded-pill">Reset</a>
+            @endif
         </form>
+
+        <div class="assetera-table-wrap table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID Peminjaman</th>
+                    <th>Peminjam</th>
+                    <th>Asset</th>
+                    <th>Kategori</th>
+                    <th>Timeline</th>
+                    <th>Status</th>
+                    <th class="text-right">Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse ($transactions as $transaction)
+                    @php
+                        $isReturned = $transaction->returned_at !== null;
+                        $isLate = !$isReturned && $transaction->borrowed_at->lt(now()->subDays(7));
+                        $statusText = $isReturned ? 'Dikembalikan' : ($isLate ? 'Terlambat' : ($transaction->returned_at === null ? 'Dipinjam' : 'Menunggu'));
+                        $statusClass = $isReturned ? 'assetera-pill-status-ok' : ($isLate ? 'assetera-pill-status-bad' : 'assetera-pill-status-warn');
+                    @endphp
+                    <tr>
+                        <td>
+                            <strong>#LM-{{ $transaction->borrowed_at->format('Y') }}-{{ str_pad($transaction->id, 3, '0', STR_PAD_LEFT) }}</strong>
+                        </td>
+                        <td>
+                            <div><strong>{{ $transaction->user->name ?? '—' }}</strong></div>
+                            <small class="text-muted">{{ $transaction->division ?? $transaction->user->username ?? '' }}</small>
+                        </td>
+                        <td>
+                            <div><strong>{{ $transaction->asset->name_asset ?? '—' }}</strong></div>
+                            <small class="text-muted">SN: {{ $transaction->asset->code_asset ?? '—' }}</small>
+                        </td>
+                        <td>
+                            <span class="assetera-pill assetera-pill-cat">{{ $transaction->asset_category_snapshot ?? $transaction->asset->category_asset ?? '—' }}</span>
+                        </td>
+                        <td>
+                            <div class="small">{{ $transaction->borrowed_at->format('d M Y') }}</div>
+                            <div class="small {{ $isLate ? 'text-danger font-weight-bold' : 'text-muted' }}">
+                                {{ $transaction->returned_at ? $transaction->returned_at->format('d M Y') : ($isLate ? $transaction->borrowed_at->addDays(7)->format('d M Y') : '—') }}
+                            </div>
+                        </td>
+                        <td>
+                            <span class="assetera-pill {{ $statusClass }}">
+                                <i class="fas fa-circle mr-1" style="font-size:6px;vertical-align:middle;"></i> {{ $statusText }}
+                            </span>
+                        </td>
+                        <td class="text-right">
+                            <div class="d-inline-flex" style="gap:4px;">
+                                {{-- View/Edit --}}
+                                <a href="{{ route('transactions.edit', $transaction) }}" class="btn btn-sm btn-light" style="border-radius:10px;width:34px;height:34px;display:inline-grid;place-items:center;" title="Lihat Detail">
+                                    <i class="fas fa-eye text-muted"></i>
+                                </a>
+                                @can('update', $transaction)
+                                    {{-- Return/Approve --}}
+                                    @if(!$isReturned)
+                                        <form action="{{ route('transactions.update', $transaction) }}" method="POST" class="d-inline js-return-form">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="user_id" value="{{ $transaction->user_id }}">
+                                            <input type="hidden" name="asset_id" value="{{ $transaction->asset_id }}">
+                                            <input type="hidden" name="borrowed_at" value="{{ $transaction->borrowed_at->format('Y-m-d') }}">
+                                            <input type="hidden" name="returned_at" value="{{ now()->format('Y-m-d') }}">
+                                            <input type="hidden" name="cost" value="{{ $transaction->cost ?? 0 }}">
+                                            <button type="submit" class="btn btn-sm btn-light" style="border-radius:10px;width:34px;height:34px;display:inline-grid;place-items:center;" title="Kembalikan" data-asset-name="{{ $transaction->asset->name_asset ?? '' }}">
+                                                <i class="fas fa-check text-success"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                    {{-- Photo placeholder --}}
+                                    <button class="btn btn-sm btn-light" style="border-radius:10px;width:34px;height:34px;display:inline-grid;place-items:center;" title="Foto" disabled>
+                                        <i class="fas fa-camera text-muted"></i>
+                                    </button>
+                                    {{-- Edit --}}
+                                    <a href="{{ route('transactions.edit', $transaction) }}" class="btn btn-sm btn-light" style="border-radius:10px;width:34px;height:34px;display:inline-grid;place-items:center;" title="Edit">
+                                        <i class="fas fa-pencil-alt text-muted"></i>
+                                    </a>
+                                @endcan
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-5">Belum ada data peminjaman aset.</td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        @if ($transactions instanceof \Illuminate\Pagination\LengthAwarePaginator && $transactions->hasPages())
+            <div class="assetera-pagination-bar">
+                <div>Menampilkan {{ $transactions->firstItem() }}-{{ $transactions->lastItem() }} dari {{ $transactions->total() }} Peminjaman</div>
+                <div>{{ $transactions->withQueryString()->links() }}</div>
+            </div>
+        @else
+            <div class="assetera-pagination-bar">
+                <div>Menampilkan {{ $transactions->count() }} Peminjaman</div>
+            </div>
+        @endif
     </div>
 @stop
 
-@section('css')
-    <style>
-        .loan-form-header h1 { font-size: 40px; font-weight: 700; color: #1f2c44; margin: 0; }
-        .loan-form-header p { margin: 6px 0 0; color: #7f8ba1; }
-        .loan-form-page { max-width: 1100px; padding-bottom: 20px; }
-        .loan-form-card { background: #fff; border-radius: 16px; box-shadow: 0 8px 20px rgba(37, 59, 102, 0.08); padding: 20px; }
-        .group-section { background: #fff; border-radius: 12px; padding: 8px 8px 12px; }
-        .group-section h3 { margin: 0 0 12px; color: #273753; font-size: 30px; font-weight: 700; display: flex; align-items: center; }
-        .group-section h3 i { color: #5a78b4; background: #eaf0fb; border-radius: 8px; width: 24px; height: 24px; display: inline-grid; place-items: center; font-size: 12px; }
-        .group-section label { font-size: 12px; color: #485776; font-weight: 700; }
-        .input-pill { height: 44px; border-radius: 999px; border: 1px solid #e2e8f3; background: #f3f6fb; color: #2f3f5f; }
-        .extra-panel { margin-top: 12px; background: #f8fafe; border: 1px solid #edf2fa; border-radius: 14px; padding: 16px; display: flex; gap: 16px; align-items: center; }
-        .upload-card { width: 320px; }
-        .upload-card label { display: block; font-size: 12px; color: #556480; font-weight: 700; margin-bottom: 8px; }
-        .upload-placeholder { height: 130px; border: 2px solid #b8c6dc; border-radius: 18px; display: grid; place-items: center; color: #7e8fae; text-align: center; }
-        .upload-placeholder i { font-size: 20px; display: block; margin-bottom: 5px; }
-        .upload-placeholder span { font-size: 13px; font-weight: 700; }
-        .check-card { flex: 1; background: #fff; border: 1px solid #edf2fa; border-radius: 14px; padding: 14px; }
-        .custom-control-label strong { display: block; color: #2f3d57; font-size: 15px; margin-bottom: 4px; }
-        .custom-control-label small { display: block; color: #7d8ca7; font-size: 13px; line-height: 1.35; }
-        .form-footer { margin-top: 14px; border: 1px solid #edf1f7; border-radius: 12px; padding: 10px; display: flex; justify-content: flex-end; gap: 10px; }
-        .btn-cancel { border-radius: 999px; min-width: 90px; }
-        .btn-save { border-radius: 999px; min-width: 140px; background: #3d5f98; color: #fff; font-weight: 700; }
-        .btn-save:hover { color: #fff; }
-        @media (max-width: 992px) {
-            .extra-panel { flex-direction: column; align-items: stretch; }
-            .upload-card { width: 100%; }
-        }
-    </style>
+@section('js')
+    <script>
+        document.querySelectorAll('.js-return-form').forEach((form) => {
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const btn = form.querySelector('button[type="submit"]');
+                const assetName = btn?.dataset.assetName || 'aset ini';
+
+                Swal.fire({
+                    title: 'Kembalikan aset?',
+                    text: `Tandai "${assetName}" sebagai dikembalikan hari ini?`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, kembalikan',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                    confirmButtonColor: '#22c55e',
+                    cancelButtonColor: '#6c757d',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
 @stop

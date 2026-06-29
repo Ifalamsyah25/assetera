@@ -6,18 +6,18 @@ namespace App\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'username', 'email', 'password', 'role'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    // 💡 TAMBAHKAN DAFTAR KONSTANTA ROLE DI SINI agar tidak error saat dipanggil di Policy / Controller
     public const ROLE_ADMIN = 'admin';
     public const ROLE_PIMPINAN = 'pimpinan';
     public const ROLE_STAFF = 'staff';
@@ -34,7 +34,35 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-   public function adminlte_profile_url(): string
+
+    public static function roles(): array
+    {
+        return [
+            self::ROLE_ADMIN,
+            self::ROLE_PIMPINAN,
+            self::ROLE_STAFF,
+        ];
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function adminlte_image(): string
+    {
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=FFFFFF&background=3c8dbc';
+    }
+
+    public function adminlte_desc(): string
+    {
+        return ucfirst($this->role ?? 'user');
+    }
+
+    /**
+     * Tetap mengarah ke dashboard sesuai perbaikan routing kita sebelumnya
+     */
+    public function adminlte_profile_url(): string
     {
         return 'dashboard';
     }

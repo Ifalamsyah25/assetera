@@ -22,6 +22,7 @@ class Transaction extends Model
         'asset_location_snapshot',
         'condition_note',
         'inspection_confirmed',
+        'photo_path',
         'borrowed_at',
         'returned_at',
         'cost',

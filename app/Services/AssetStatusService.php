@@ -6,22 +6,27 @@ use App\Models\Asset;
 
 class AssetStatusService
 {
+    /**
+     * Sinkronisasi status aset secara otomatis berdasarkan relasi
+     */
     public function sync(Asset $asset): Asset
     {
-        // Ambil status baru berdasarkan kondisi transaksi/maintenance
-        if ($asset->maintenances()->whereIn('status', ['pending', 'in_progress'])->exists()) {
-            $status = Asset::STATUS_DAMAGED;
-        } elseif ($asset->transactions()->whereNull('returned_at')->exists()) {
-            $status = Asset::STATUS_BORROWED;
-        } else {
-            $status = Asset::STATUS_AVAILABLE;
+        $asset->refresh();
+
+        // 1. Jika ada maintenance aktif, set status rusak
+        if ($asset->maintenances()->open()->exists()) {
+            $asset->update(['status_asset' => Asset::STATUS_DAMAGED]);
+            return $asset;
         }
 
-        // Update ke database
-        $asset->update([
-            'status_asset' => $status,
-        ]);
+        // 2. Jika ada transaksi aktif, set status dipinjam
+        if ($asset->transactions()->active()->exists()) {
+            $asset->update(['status_asset' => Asset::STATUS_BORROWED]);
+            return $asset;
+        }
 
+        // 3. Jika aman, set status tersedia
+        $asset->update(['status_asset' => Asset::STATUS_AVAILABLE]);
         return $asset;
     }
 }

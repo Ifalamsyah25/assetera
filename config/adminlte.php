@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<span class="brand-title-main">ASSETERA</span><span class="brand-title-sub">v1.01</span>',
+    'logo' => '<span class="brand-title-main">ASSETERA</span><span class="brand-title-sub"></span>',
     'logo_img' => null,
     'logo_img_class' => 'd-none',
     'logo_img_xl' => null,
@@ -325,9 +325,9 @@ return [
         ],
         [
             'text' => 'Pengajuan Aset',
-            'route' => 'asset-requests.index',
+            'route' => 'asset-requests.create',
             'icon' => 'fas fa-fw fa-hand-holding-usd',
-            'can' => 'admin-pimpinan-only',
+            'can' => 'staff-only',
         ],
         [
             'text' => 'Riwayat Pengajuan',
@@ -337,18 +337,17 @@ return [
         ],
         [
             'text' => 'Pengadaan Aset',
-            'route' => 'assets.create',
+            'route' => 'asset-requests.index',
             'icon' => 'fas fa-fw fa-clipboard-list',
-            'can' => 'create',
-            'model' => \App\Models\Asset::class,
+            'can' => 'admin-pimpinan-only',
         ],
-        [
-            'text' => 'Peminjaman Asset',
-            'route' => 'transactions.index',
-            'icon' => 'fas fa-fw fa-briefcase',
-            'can' => 'viewAny',
-            'model' => \App\Models\Transaction::class,
-        ],
+        //[
+         //   'text' => 'Peminjaman Asset',
+        //    'route' => 'transactions.index',
+        //    'icon' => 'fas fa-fw fa-briefcase',
+         //   'can' => 'viewAny',
+          //  'model' => \App\Models\Transaction::class,
+       // ],
         [
             'text' => 'Under Service',
             'route' => 'maintenances.index',
@@ -356,12 +355,19 @@ return [
             'can' => 'viewAny',
             'model' => \App\Models\Maintenance::class,
         ],
+        
         [
             'text' => 'User',
             'route' => 'users.index',
             'icon' => 'fas fa-fw fa-user',
             'can' => 'viewAny',
             'model' => \App\Models\User::class,
+        ],
+        [
+            'text' => 'Laporan',
+            'route' => 'reports.summary',
+            'icon' => 'fas fa-fw fa-clipboard-list',
+            'can' => 'admin-pimpinan-only',
         ],
         [
             'text' => 'Logout',
@@ -458,7 +464,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11',
                 ],
             ],
         ],
