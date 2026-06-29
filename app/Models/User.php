@@ -17,6 +17,11 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    // 💡 TAMBAHKAN DAFTAR KONSTANTA ROLE DI SINI agar tidak error saat dipanggil di Policy / Controller
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_PIMPINAN = 'pimpinan';
+    public const ROLE_STAFF = 'staff';
+
     /**
      * Get the attributes that should be cast.
      *
@@ -28,5 +33,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+   public function adminlte_profile_url(): string
+    {
+        return 'dashboard';
     }
 }
