@@ -16,7 +16,7 @@
 
     .text-primary {
       color: #6c8dbf;
-      size: 4rem;
+      size: 1.25rem;
     }
 
     .bg-primary {
