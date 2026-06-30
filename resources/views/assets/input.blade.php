@@ -42,44 +42,93 @@
                     <h3>Informasi Utama</h3>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="code_asset">Kode Aset <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control input-pill" id="code_asset" name="code_asset" value="{{ old('code_asset', $asset->code_asset) }}" placeholder="AST-2026-XXXX" required>
-                        </div>
+    <label for="code_asset">
+        Kode Aset <span class="text-danger">*</span>
+    </label>
+
+    <input
+        type="text"
+        id="code_asset"
+        name="code_asset"
+        class="form-control input-pill @error('code_asset') is-invalid @enderror"
+        value="{{ old('code_asset', $asset->code_asset) }}"
+        placeholder="AST-2026-XXXX"
+        required>
+
+    @error('code_asset')
+        <div class="invalid-feedback d-block">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
                         <div class="form-group col-md-6">
-                            <label for="name_asset">Nama Aset <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control input-pill" id="name_asset" name="name_asset" value="{{ old('name_asset', $asset->name_asset) }}" placeholder="Masukkan nama aset" required>
-                        </div>
+    <label for="name_asset">
+        Nama Aset <span class="text-danger">*</span>
+    </label>
+
+    <input
+        type="text"
+        id="name_asset"
+        name="name_asset"
+        class="form-control input-pill @error('name_asset') is-invalid @enderror"
+        value="{{ old('name_asset', $asset->name_asset) }}"
+        placeholder="Masukkan nama aset"
+        required>
+
+    @error('name_asset')
+        <div class="invalid-feedback d-block">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
                     </div>
                     <div class="form-row">
                         
                         <div class="form-group col-md-6">
-                            <label for="category_asset">Kategori <span class="text-danger">*</span></label>
-                            <select id="category_asset" name="category_asset" class="form-control input-pill" required>
-                                <option value="" disabled {{ old('category_asset', $asset->category_asset) ? '' : 'selected' }}>-- Pilih Kategori --</option>
-                                
-                                @php
-                                    // Menyediakan daftar opsi kategori langsung di aplikasi
-                                    $listKategori = ['Alat Dapur', 'Elektronik', 'Furnitur', 'Kendaraan', 'Peralatan Kantor'];
-                                @endphp
+    <label for="category_asset">
+        Kategori <span class="text-danger">*</span>
+    </label>
 
-                                @foreach($listKategori as $kategori)
-                                    <option value="{{ $kategori }}" @selected(old('category_asset', $asset->category_asset) == $kategori)>
-                                        {{ $kategori }}
-                                    </option>
-                                @endforeach
+    <select
+        id="category_asset"
+        name="category_asset"
+        class="form-control input-pill @error('category_asset') is-invalid @enderror"
+        required>
 
-                                {{-- Pengaman khusus: Jika data aset lama di database masih bernilai 'Uncategorized' --}}
-                                @if(old('category_asset', $asset->category_asset) == 'Uncategorized')
-                                    <option value="Uncategorized" selected>⚠️ Uncategorized (Harap Ubah Kategori)</option>
-                                @endif
-                            </select>
-                        </div>
+        <option value="" disabled {{ old('category_asset', $asset->category_asset) ? '' : 'selected' }}>
+            -- Pilih Kategori --
+        </option>
+
+        @php
+            $listKategori = ['Alat Dapur', 'Elektronik', 'Furnitur', 'Kendaraan', 'Peralatan Kantor'];
+        @endphp
+
+        @foreach($listKategori as $kategori)
+            <option value="{{ $kategori }}" @selected(old('category_asset', $asset->category_asset) == $kategori)>
+                {{ $kategori }}
+            </option>
+        @endforeach
+
+        @if(old('category_asset', $asset->category_asset) == 'Uncategorized')
+            <option value="Uncategorized" selected>
+                ⚠️ Uncategorized (Harap Ubah Kategori)
+            </option>
+        @endif
+
+    </select>
+
+    @error('category_asset')
+        <div class="invalid-feedback d-block">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
 
                         <div class="form-group col-md-6">
                             <label for="merk_asset">Merk</label>
                             <input type="text" class="form-control input-pill" id="merk_asset" name="merk_asset" value="{{ old('merk_asset', $asset->merk_asset) }}" placeholder="Contoh: Sharp, Philips, etc.">
                         </div>
-                    </div>
+                        </div>
                 </section>
 
                 <section class="group-section">
@@ -94,29 +143,99 @@
                             <input type="text" class="form-control input-pill" id="kondisi_asset" name="kondisi_asset" value="{{ old('kondisi_asset', $asset->kondisi_asset) }}">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="status_asset">Status <span class="text-danger">*</span></label>
-                            <select id="status_asset" name="status_asset" class="form-control input-pill" required>
-                                <option value="available" @selected(old('status_asset', $asset->status_asset) === 'available')>Tersedia</option>
-                                <option value="borrowed" @selected(old('status_asset', $asset->status_asset) === 'borrowed')>Dipinjam</option>
-                                <option value="damaged" @selected(old('status_asset', $asset->status_asset) === 'damaged')>Rusak</option>
-                            </select>
-                        </div>
+
+    <label for="status_asset">
+        Status <span class="text-danger">*</span>
+    </label>
+
+    <select
+        id="status_asset"
+        name="status_asset"
+        class="form-control input-pill @error('status_asset') is-invalid @enderror"
+        required>
+
+        <option value="available" @selected(old('status_asset', $asset->status_asset) === 'available')>
+            Tersedia
+        </option>
+
+        <option value="borrowed" @selected(old('status_asset', $asset->status_asset) === 'borrowed')>
+            Dipinjam
+        </option>
+
+        <option value="damaged" @selected(old('status_asset', $asset->status_asset) === 'damaged')>
+            Rusak
+        </option>
+
+    </select>
+
+    @error('status_asset')
+        <div class="invalid-feedback d-block">
+            {{ $message }}
+        </div>
+    @enderror
+
+</div>
                     </div>
                 </section>
 
                 <section class="group-section">
                     <h3>Informasi Tambahan</h3>
                     <div class="form-group">
-                        <label for="purchase_price">Harga Pengadaan</label>
-                        <input type="number" step="0.01" min="0" class="form-control input-pill" id="purchase_price" name="purchase_price" value="{{ old('purchase_price', $asset->purchase_price) }}" placeholder="Contoh: 2500000">
+                    <label for="purchase_price">
+                   Harga Pengadaan
+                    </label>
+
+                    <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    id="purchase_price"
+                    name="purchase_price"
+                    class="form-control input-pill @error('purchase_price') is-invalid @enderror"
+                    value="{{ old('purchase_price', $asset->purchase_price) }}"
+                    placeholder="Contoh: 2500000">
+
+                    @error('purchase_price')
+                     <div class="invalid-feedback d-block">
+                     {{ $message }}
+                     </div>
+                     @enderror
                     </div>
                     <div class="form-group">
-                        <label for="purchase_date">Tanggal Masuk</label>
-                        <input type="date" class="form-control input-pill" id="purchase_date" name="purchase_date" value="{{ old('purchase_date', optional($asset->purchase_date)->format('Y-m-d')) }}">
+                     <label for="purchase_date">
+                    Tanggal Masuk
+                     </label>
+
+                      <input
+                    type="date"
+                    id="purchase_date"
+                    name="purchase_date"
+                    class="form-control input-pill @error('purchase_date') is-invalid @enderror"
+                    value="{{ old('purchase_date', optional($asset->purchase_date)->format('Y-m-d')) }}">
+
+                    @error('purchase_date')
+                     <div class="invalid-feedback d-block">
+                     {{ $message }}
+                     </div>
+                      @enderror
                     </div>
                     <div class="form-group">
-                        <label for="deskripsi_asset">Deskripsi</label>
-                        <textarea id="deskripsi_asset" name="deskripsi_asset" class="form-control input-area" rows="4" placeholder="Berikan catatan tambahan mengenai aset ini...">{{ old('deskripsi_asset', $asset->deskripsi_asset) }}</textarea>
+                    <label for="deskripsi_asset">
+                       Deskripsi
+                     </label>
+
+                        <textarea
+                         id="deskripsi_asset"
+                         name="deskripsi_asset"
+                          class="form-control input-area @error('deskripsi_asset') is-invalid @enderror"
+                          rows="4"
+                         placeholder="Berikan catatan tambahan mengenai aset ini...">{{ old('deskripsi_asset', $asset->deskripsi_asset) }}</textarea>
+
+                        @error('deskripsi_asset')
+                        <div class="invalid-feedback d-block">
+                         {{ $message }}
+                         </div>
+                     @enderror
                     </div>
                 </section>
 
