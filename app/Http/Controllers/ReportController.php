@@ -219,7 +219,7 @@ class ReportController extends Controller
         return $pdf->download('summary-report.pdf');
     }
 
-    public function exportExcel(Request $request)
+    public function exportExcel(Request $request): StreamedResponse
     {
         $summary = $this->getSummaryDataForExport($request);
 
@@ -231,7 +231,24 @@ class ReportController extends Controller
             ['rows' => count($summary) - 1]
         );
 
-        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\SummaryExport($summary), 'summary-report.xlsx');
+        return response()->streamDownload(function () use ($summary) {
+            $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+
+            foreach ($summary as $rowIndex => $row) {
+                $rowNum = $rowIndex + 1;
+                foreach ($row as $colIndex => $value) {
+                    $colNum = $colIndex + 1;
+                    $sheet->setCellValue([$colNum, $rowNum], $value);
+                }
+            }
+
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+            $writer->save('php://output');
+        }, 'summary-report.xlsx', [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Cache-Control' => 'max-age=0',
+        ]);
     }
 
     private function getSummaryDataForExport(Request $request)

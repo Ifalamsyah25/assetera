@@ -84,10 +84,8 @@ body {
 }
 
 .nav-item.assetera-logout-link {
-    position: fixed;
-    left: 18px;
-    bottom: 16px;
-    width: 235px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .nav-item.assetera-logout-link .nav-link {
@@ -184,12 +182,7 @@ body {
     padding-bottom: 6px;
 }
 
-@media (max-width: 991px) {
-    .nav-item.assetera-logout-link {
-        position: static;
-        width: auto;
-    }
-}
+
 
 /* =====================================================
    DASHBOARD – Hero, Stat Cards, Table, Pagination, Pills

@@ -197,7 +197,7 @@ return [
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-light elevation-0',
-    'classes_sidebar_nav' => 'nav-flat nav-child-indent nav-compact nav-pills',
+    'classes_sidebar_nav' => 'nav-child-indent nav-compact nav-pills',
     'classes_topnav' => 'navbar-white navbar-light assetera-topbar',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container-fluid',
@@ -355,19 +355,23 @@ return [
             'can' => 'viewAny',
             'model' => \App\Models\Maintenance::class,
         ],
-        
+        [
+            'text' => 'Laporan',
+            'route' => 'reports.summary',
+            'icon' => 'fas fa-fw fa-chart-line',
+            'can' => 'admin-pimpinan-only',
+        ],
+        [
+            'text' => 'Stock Opname',
+            'route' => 'stock-opnames.index',
+            'icon' => 'fas fa-fw fa-boxes',
+        ],
         [
             'text' => 'User',
             'route' => 'users.index',
             'icon' => 'fas fa-fw fa-user',
             'can' => 'viewAny',
             'model' => \App\Models\User::class,
-        ],
-        [
-            'text' => 'Laporan',
-            'route' => 'reports.summary',
-            'icon' => 'fas fa-fw fa-clipboard-list',
-            'can' => 'admin-pimpinan-only',
         ],
         [
             'text' => 'Logout',

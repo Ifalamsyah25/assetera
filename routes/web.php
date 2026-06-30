@@ -7,6 +7,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssetRequestController;
+use App\Http\Controllers\StockOpnameController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/assets/export', [AssetController::class, 'export'])->name('assets.export');
         Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
         Route::get('/maintenances', [MaintenanceController::class, 'index'])->name('maintenances.index');
+        Route::get('/stock-opnames', [StockOpnameController::class, 'index'])->name('stock-opnames.index');
+        Route::get('/stock-opnames/export', [StockOpnameController::class, 'export'])->name('stock-opnames.export');
         
         // Halaman daftar pengajuan (untuk semua role)
         // Note: For staff, they will use history route. For admin/pimpinan, they will use index.
@@ -47,6 +50,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/asset-requests/create', [AssetRequestController::class, 'create'])->name('asset-requests.create');
         Route::post('/asset-requests', [AssetRequestController::class, 'store'])->name('asset-requests.store');
         Route::get('/asset-requests/history', [AssetRequestController::class, 'history'])->name('asset-requests.history');
+
+        // Stock Opname Create & Store
+        Route::get('/stock-opnames/create', [StockOpnameController::class, 'create'])->name('stock-opnames.create');
+        Route::post('/stock-opnames', [StockOpnameController::class, 'store'])->name('stock-opnames.store');
     });
 
     Route::middleware('role:admin,pimpinan')->group(function () {

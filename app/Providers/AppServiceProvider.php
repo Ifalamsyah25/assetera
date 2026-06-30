@@ -28,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        \Illuminate\Pagination\Paginator::useBootstrapFour();
+
         Gate::policy(Asset::class, AssetPolicy::class);
         Gate::policy(Transaction::class, TransactionPolicy::class);
         Gate::policy(Maintenance::class, MaintenancePolicy::class);
