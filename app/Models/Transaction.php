@@ -22,7 +22,6 @@ class Transaction extends Model
         'asset_location_snapshot',
         'condition_note',
         'inspection_confirmed',
-        'photo_path',
         'borrowed_at',
         'returned_at',
         'cost',
@@ -50,3 +49,5 @@ class Transaction extends Model
         return $query->whereNull('returned_at');
     }
 }
+
+//updated at 2026-06-30 08:13:00
