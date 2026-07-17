@@ -53,6 +53,6 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // $this->call(StockOpnameSeeder::class);
+        $this->call(StockOpnameSeeder::class);
     }
 }

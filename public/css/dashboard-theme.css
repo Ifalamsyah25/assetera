@@ -796,3 +796,782 @@ body {
     border-radius: 10px;
     font-weight: 600;
 }
+
+/* =====================================================
+   MOBILE RESPONSIVE — Complete Overhaul
+   ===================================================== */
+
+/* Ensure box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* ── Tablet (≤ 992px) ── */
+@media (max-width: 992px) {
+    html {
+        font-size: 100% !important;
+    }
+    body {
+        font-size: 1rem !important;
+    }
+    .assetera-brand {
+        height: auto;
+        padding: 14px 16px 10px;
+    }
+    .brand-title-main {
+        font-size: 26px;
+    }
+    .content-wrapper > .content {
+        padding: 10px 12px;
+    }
+    .content-header {
+        padding: 10px 12px 6px;
+    }
+    .content-header h1 {
+        font-size: 22px;
+    }
+}
+
+/* ── Mobile (≤ 768px) ── */
+@media (max-width: 768px) {
+    /* === GLOBAL RESETS === */
+    html {
+        font-size: 87.5% !important; /* 14px base instead of 16px */
+    }
+    body {
+        font-size: 0.875rem !important;
+    }
+    .content-wrapper > .content {
+        padding: 8px;
+    }
+    /* Hide duplicate dashboard heading on mobile — hero-banner shows same info */
+    .content-header .dashboard-heading {
+        display: none !important;
+    }
+    .content-header {
+        padding: 4px 8px 2px;
+        min-height: 0 !important;
+    }
+    .content-header h1 {
+        font-size: 16px !important;
+        margin-bottom: 0 !important;
+    }
+    .content-header p,
+    .content-header small {
+        font-size: 11px !important;
+    }
+
+    /* === TOPBAR === */
+    .navbar.assetera-topbar {
+        min-height: 42px !important;
+        padding: 0 8px !important;
+    }
+    .assetera-topbar .navbar-nav .nav-link {
+        padding: 6px 5px !important;
+        font-size: 11px !important;
+    }
+    .assetera-topbar .navbar-nav.ml-auto {
+        gap: 2px !important;
+    }
+    /* Hide search in topbar */
+    .assetera-topbar .navbar-search,
+    .assetera-topbar .form-inline {
+        display: none !important;
+    }
+    /* Truncate long username */
+    .assetera-topbar .navbar-nav.ml-auto .user-menu > .nav-link span {
+        max-width: 80px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+        font-size: 11px !important;
+    }
+    /* Hide the 'Admin' pseudo-element on mobile */
+    .assetera-topbar .navbar-nav.ml-auto .user-menu > .nav-link span::after {
+        display: none !important;
+    }
+    /* Reduce notification bell size */
+    .assetera-topbar .navbar-nav.ml-auto .nav-item:first-child .nav-link {
+        width: 28px !important;
+        height: 28px !important;
+        padding: 4px !important;
+        font-size: 12px !important;
+    }
+
+    /* === SIDEBAR === */
+    .main-sidebar {
+        width: 250px !important;
+    }
+    .assetera-brand {
+        height: auto !important;
+        padding: 12px 14px 8px !important;
+    }
+    .brand-title-main {
+        font-size: 22px !important;
+    }
+    .main-sidebar .nav-sidebar .nav-link {
+        padding: 8px 12px !important;
+    }
+    .main-sidebar .nav-sidebar .nav-link p {
+        font-size: 13px !important;
+    }
+
+    /* === HERO BANNER (assets/index) === */
+    .hero-banner {
+        padding: 14px !important;
+        border-radius: 12px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        margin-bottom: 12px !important;
+    }
+    .hero-banner h2 {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0 !important;
+    }
+    .hero-banner .hero-greeting,
+    .hero-banner p.hero-greeting {
+        font-size: 14px !important;
+        margin-bottom: 4px !important;
+    }
+    .hero-illustration {
+        display: none !important;
+    }
+
+    /* === ASSETERA HERO (transactions, etc.) === */
+    .assetera-hero {
+        padding: 14px !important;
+        border-radius: 12px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        margin-bottom: 12px !important;
+    }
+    .assetera-hero h1 {
+        font-size: 18px !important;
+    }
+    .assetera-hero p {
+        font-size: 12px !important;
+    }
+    .assetera-hero .btn,
+    .assetera-hero .btn-save,
+    .assetera-hero a.btn {
+        width: 100% !important;
+        text-align: center !important;
+        min-width: 0 !important;
+        font-size: 13px !important;
+        padding: 8px 14px !important;
+        border-radius: 10px !important;
+    }
+    .assetera-hero-art {
+        display: none !important;
+    }
+    .assetera-hero-greet {
+        font-size: 15px !important;
+    }
+    .assetera-hero-sub {
+        font-size: 12px !important;
+        max-width: 100% !important;
+    }
+    .assetera-hero-watermark {
+        font-size: 30px !important;
+    }
+    .assetera-hero-text .d-flex .assetera-stat-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 16px !important;
+    }
+    .assetera-hero-text h1[style] {
+        font-size: 18px !important;
+    }
+    .assetera-hero-text p[style] {
+        font-size: 11px !important;
+    }
+
+    /* === STAT CARDS — Force 2 columns below 576px === */
+    .row > [class*="col-sm-6"],
+    .row > [class*="col-lg-3"].col-sm-6,
+    .assetera-stat-row > [class*="col-sm-6"] {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+    .row > .col-lg-3.mb-3,
+    .row > .col-sm-6.mb-3 {
+        margin-bottom: 8px !important;
+    }
+    /* Report page col-6 cards */
+    .row > .col-6,
+    .row > .col-lg-3.col-6 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
+    /* Stat card internals */
+    .assetera-stat-card,
+    .asset-stat-card,
+    .proc-stat-card,
+    .stat-card {
+        padding: 10px !important;
+        border-radius: 10px !important;
+        gap: 8px !important;
+    }
+    .assetera-stat-card h3,
+    .asset-stat-card h3,
+    .proc-stat-card h3,
+    .stat-card h3 {
+        font-size: 20px !important;
+        margin: 0 !important;
+    }
+    .assetera-stat-card p,
+    .asset-stat-card p,
+    .proc-stat-card p,
+    .stat-card small {
+        font-size: 11px !important;
+        margin: 0 !important;
+    }
+    .assetera-stat-card .text-xs,
+    .asset-stat-card .text-xs {
+        font-size: 9px !important;
+    }
+    .assetera-stat-icon,
+    .asset-stat-icon,
+    .proc-stat-icon,
+    .stat-icon {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 14px !important;
+        border-radius: 8px !important;
+        min-width: 32px !important;
+    }
+
+    /* === TABLE CARD === */
+    .asset-table-card {
+        padding: 10px !important;
+        border-radius: 12px !important;
+    }
+    .table-header-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        padding: 0 0 10px !important;
+    }
+    .table-header-row h3 {
+        font-size: 16px !important;
+        margin-bottom: 0 !important;
+    }
+    .action-buttons {
+        width: 100% !important;
+        display: flex !important;
+        gap: 6px !important;
+    }
+    .action-buttons .btn,
+    .action-buttons a.btn {
+        flex: 1 !important;
+        text-align: center !important;
+        font-size: 11px !important;
+        padding: 6px 10px !important;
+        min-width: 0 !important;
+    }
+
+    /* === FILTER / SEARCH === */
+    .table-filter-row {
+        flex-direction: column !important;
+        gap: 6px !important;
+        margin-bottom: 10px !important;
+    }
+    .search-box {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+    }
+    .search-box input {
+        width: 100% !important;
+        font-size: 12px !important;
+        height: 34px !important;
+    }
+    .filter-select {
+        width: 100% !important;
+        min-width: 0 !important;
+        font-size: 12px !important;
+        height: 34px !important;
+    }
+    .filter-buttons {
+        width: 100% !important;
+        display: flex !important;
+        gap: 6px !important;
+    }
+    .filter-buttons .btn {
+        flex: 1 !important;
+        font-size: 12px !important;
+        padding: 6px !important;
+    }
+
+    /* Toolbar filters (transactions, etc.) */
+    .assetera-toolbar-filters {
+        padding: 8px 10px !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+    .assetera-toolbar-filters .form-control {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        font-size: 12px !important;
+    }
+    .assetera-toolbar-filters select.form-control {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .assetera-toolbar-filters .btn {
+        width: 100% !important;
+    }
+
+    /* === TABLES === */
+    .table-responsive {
+        -webkit-overflow-scrolling: touch;
+    }
+    .dashboard-table thead th,
+    .assetera-table-wrap .table thead th,
+    .service-table thead th,
+    .procurement-table thead th,
+    .table thead th {
+        font-size: 10px !important;
+        padding: 6px 4px !important;
+        white-space: nowrap !important;
+        letter-spacing: 0.02em !important;
+    }
+    .dashboard-table tbody td,
+    .assetera-table-wrap .table tbody td,
+    .service-table tbody td,
+    .procurement-table tbody td,
+    .table tbody td {
+        font-size: 11px !important;
+        padding: 8px 4px !important;
+    }
+
+    /* === PILLS / BADGES === */
+    .assetera-pill,
+    .category-pill,
+    .status-pill,
+    .pill {
+        font-size: 9px !important;
+        padding: 2px 7px !important;
+    }
+    .badge {
+        font-size: 10px !important;
+        padding: 3px 6px !important;
+    }
+
+    /* === PAGINATION === */
+    .assetera-pagination-bar,
+    .proc-pagination {
+        flex-direction: column !important;
+        gap: 6px !important;
+        padding: 8px 10px !important;
+        font-size: 11px !important;
+        text-align: center !important;
+    }
+    .assetera-pagination-bar .page-link,
+    .proc-pagination .page-link {
+        padding: 4px 8px !important;
+        font-size: 11px !important;
+    }
+
+    /* === CARDS (general) === */
+    .card {
+        border-radius: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    .card > .card-header {
+        padding: 10px 12px !important;
+    }
+    .card > .card-header .card-title {
+        font-size: 14px !important;
+    }
+    .card-body {
+        padding: 10px 12px !important;
+    }
+    .assetera-card .card-header {
+        padding: 10px 12px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+    }
+    .assetera-card .card-title {
+        font-size: 14px !important;
+    }
+
+    /* Card header with d-flex buttons */
+    .card-header .d-flex {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+    }
+    .card-header .d-flex > div:last-child {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        width: 100% !important;
+    }
+    .card-header .btn-sm {
+        font-size: 11px !important;
+        padding: 5px 10px !important;
+    }
+
+    /* === SMALL BOXES (reports/users) === */
+    .small-box {
+        margin-bottom: 8px !important;
+    }
+    .small-box .inner {
+        padding: 10px !important;
+    }
+    .small-box .inner h3 {
+        font-size: 20px !important;
+    }
+    .small-box .inner p {
+        font-size: 11px !important;
+        margin-bottom: 0 !important;
+    }
+    .small-box .icon i {
+        font-size: 36px !important;
+    }
+    .small-box .small-box-footer {
+        padding: 3px 10px !important;
+        font-size: 10px !important;
+    }
+
+    /* === INFO BOXES === */
+    .info-box {
+        border-radius: 10px !important;
+        min-height: auto !important;
+    }
+    .info-box-icon {
+        width: 44px !important;
+        min-height: 44px !important;
+    }
+    .info-box .info-box-text {
+        font-size: 11px !important;
+    }
+    .info-box .info-box-number {
+        font-size: 16px !important;
+    }
+    .info-box .info-box-content {
+        padding: 6px 8px !important;
+    }
+    .info-box .info-box-content .text-muted {
+        font-size: 10px !important;
+    }
+
+    /* === BREADCRUMB === */
+    .breadcrumb {
+        font-size: 11px !important;
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+        font-size: 10px !important;
+    }
+
+    /* === FORM INLINE (report filters) === */
+    .form-inline {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    .form-inline .form-group {
+        margin-right: 0 !important;
+        margin-bottom: 6px !important;
+        width: 100% !important;
+    }
+    .form-inline .form-control,
+    .form-inline .form-control-sm {
+        width: 100% !important;
+    }
+    .form-inline .btn {
+        width: 100% !important;
+    }
+    .form-inline label {
+        font-size: 11px !important;
+        margin-bottom: 2px !important;
+    }
+
+    /* Report snapshot buttons */
+    .d-flex.flex-wrap.gap-2 {
+        width: 100% !important;
+    }
+    .d-flex.flex-wrap.gap-2 .btn {
+        flex: 1 !important;
+        font-size: 10px !important;
+        padding: 5px 8px !important;
+        margin: 0 !important;
+    }
+
+    /* Export buttons */
+    .card-header .d-flex .btn-sm.btn-danger,
+    .card-header .d-flex .btn-sm.btn-success,
+    .card-header .d-flex .btn-sm.btn-primary {
+        flex: 1 !important;
+        min-width: 0 !important;
+        text-align: center !important;
+        font-size: 10px !important;
+    }
+
+    /* === PAGE: Maintenances / Under Service === */
+    .service-header-card {
+        padding: 10px 12px !important;
+        border-radius: 12px !important;
+    }
+    .service-header-card h1 {
+        font-size: 16px !important;
+    }
+    .service-header-card p {
+        font-size: 11px !important;
+    }
+    .header-icon {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 8px !important;
+        font-size: 14px !important;
+    }
+    .header-left {
+        gap: 8px !important;
+    }
+    .service-table-card {
+        border-radius: 12px !important;
+    }
+    .table-head {
+        padding: 10px 12px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+    .table-head h3 {
+        font-size: 14px !important;
+        max-width: 100% !important;
+    }
+    .table-tools {
+        width: 100% !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+    .table-tools .search-box input {
+        min-width: 100% !important;
+        width: 100% !important;
+        font-size: 12px !important;
+    }
+    .table-tools .filter-select {
+        flex: 1 !important;
+        min-width: 0 !important;
+    }
+    .btn-add-service {
+        flex: 1 !important;
+        text-align: center !important;
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+    }
+
+    /* === PAGE: Stock Opname === */
+    .dashboard-heading {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+    .dashboard-heading h1 {
+        font-size: 18px !important;
+    }
+    .dashboard-heading p {
+        font-size: 11px !important;
+    }
+    .dashboard-wrapper {
+        padding-bottom: 10px !important;
+    }
+    .btn-add,
+    .btn-export {
+        font-size: 11px !important;
+        padding: 6px 12px !important;
+    }
+
+    /* === PAGE: Asset Requests / Pengadaan === */
+    .procurement-header h1 {
+        font-size: 18px !important;
+    }
+    .procurement-header p {
+        font-size: 11px !important;
+    }
+    .request-card {
+        border-radius: 12px !important;
+    }
+    .request-head {
+        padding: 10px 12px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+    .request-head h3 {
+        font-size: 14px !important;
+    }
+    .request-head p {
+        font-size: 11px !important;
+    }
+    .request-tools {
+        width: 100% !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+    .request-tools .search-form {
+        width: 100% !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+    .request-tools .search-box input {
+        min-width: 100% !important;
+    }
+    .request-tools .form-control-sm {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    .btn-add-asset {
+        width: 100% !important;
+        text-align: center !important;
+        font-size: 12px !important;
+    }
+
+    /* === PAGE: Users === */
+    .table-hover.table-striped.text-nowrap {
+        white-space: normal !important;
+    }
+
+    /* === FORMS (create/edit) === */
+    .card-body .form-group label {
+        font-size: 12px !important;
+    }
+    .card-body .form-control {
+        font-size: 13px !important;
+    }
+
+    /* === MODALS === */
+    .modal-dialog {
+        margin: 8px !important;
+    }
+    .modal-body {
+        padding: 12px !important;
+    }
+    .swal2-popup {
+        font-size: 13px !important;
+        padding: 14px !important;
+        width: 90% !important;
+    }
+
+    /* === ROW MARGINS === */
+    .row {
+        margin-left: -4px !important;
+        margin-right: -4px !important;
+    }
+    .row > [class*="col-"] {
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+    .mb-3 {
+        margin-bottom: 8px !important;
+    }
+    .mb-4 {
+        margin-bottom: 12px !important;
+    }
+}
+
+/* ── Small mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+    html {
+        font-size: 81.25% !important; /* 13px base */
+    }
+    .content-wrapper > .content {
+        padding: 6px !important;
+    }
+    .content-header h1 {
+        font-size: 16px !important;
+    }
+
+    /* Hero even smaller */
+    .hero-banner {
+        padding: 10px !important;
+    }
+    .hero-banner h2 {
+        font-size: 12px !important;
+    }
+    .assetera-hero {
+        padding: 10px !important;
+    }
+
+    /* Stat cards */
+    .assetera-stat-card h3,
+    .asset-stat-card h3,
+    .proc-stat-card h3 {
+        font-size: 18px !important;
+    }
+    .assetera-stat-card p,
+    .asset-stat-card p,
+    .proc-stat-card p {
+        font-size: 10px !important;
+    }
+    .assetera-stat-icon,
+    .asset-stat-icon,
+    .proc-stat-icon {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 12px !important;
+    }
+
+    /* Even smaller tables */
+    .table thead th {
+        font-size: 9px !important;
+        padding: 4px 3px !important;
+    }
+    .table tbody td {
+        font-size: 10px !important;
+        padding: 6px 3px !important;
+    }
+
+    /* Small box */
+    .small-box .inner h3 {
+        font-size: 18px !important;
+    }
+    .small-box .inner p {
+        font-size: 10px !important;
+    }
+    .small-box .icon i {
+        font-size: 28px !important;
+    }
+
+    /* Action buttons in table */
+    .btn-xs {
+        font-size: 10px !important;
+        padding: 3px 6px !important;
+    }
+    .d-inline-flex[style*="gap"] {
+        gap: 2px !important;
+    }
+    .d-inline-flex .btn {
+        width: 26px !important;
+        height: 26px !important;
+    }
+}
+
+/* ── Print === */
+@media print {
+    .main-sidebar,
+    .main-header,
+    .assetera-topbar,
+    .content-header,
+    .btn,
+    .form-inline,
+    .breadcrumb {
+        display: none !important;
+    }
+    .content-wrapper {
+        margin-left: 0 !important;
+        background: #fff !important;
+    }
+}
