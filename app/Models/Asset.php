@@ -42,6 +42,11 @@ class Asset extends Model
         ];
     }
 
+    public static function generateCode(): string
+    {
+        return sprintf('AST-%s-%03d', date('Y'), random_int(1, 999));
+    }
+
     public function maintenances()
     {
         return $this->hasMany(Maintenance::class);

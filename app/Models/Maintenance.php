@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Asset;
 use Database\Factories\MaintenanceFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -47,6 +48,17 @@ class Maintenance extends Model
     public function asset(): BelongsTo
     {
         return $this->belongsTo(Asset::class);
+    }
+
+    public function complete(): self
+    {
+        $this->update(['status' => self::STATUS_COMPLETED]);
+
+        if ($this->asset) {
+            $this->asset->update(['status_asset' => Asset::STATUS_AVAILABLE]);
+        }
+
+        return $this;
     }
 
     public function scopeOpen($query)
